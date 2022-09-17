@@ -16,7 +16,7 @@ const Routes = () => {
       <div className={styContainer}>
         <div className={styMobileView}>
           <div className={styMobileContainer}>
-            <div className={styTitle}>Phone Book</div>
+            <h1 className={styTitle}>Phone Book</h1>
             <Switch location={location} key={location.pathname}>
               <Route path="/" element={<ContactList />} />
             </Switch>

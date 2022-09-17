@@ -1,12 +1,15 @@
 import React from 'react';
-import { styContainer } from './styles';
+import { IcSearch } from '../../../assets';
+import { styContainer, styInputBar, styBtnBar } from './styles';
 
 const SearchBar = () => {
   return (
-    <div className={styContainer}>
-      <div>Tulisan</div>
-      <div>Icon</div>
-    </div>
+    <form className={styContainer}>
+      <input className={styInputBar} type="text" placeholder="Seach contacts" />
+      <button className={styBtnBar} type="submit">
+        <img src={IcSearch} alt="icon search" />
+      </button>
+    </form>
   );
 };
 
