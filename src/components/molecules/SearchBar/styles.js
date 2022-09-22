@@ -17,6 +17,7 @@ export const styInputBar = css`
   border: 0;
   outline: none;
   font-size: 15px;
+  font-family: 'Poppins', sans-serif;
 
   ::placeholder {
     color: #808080;

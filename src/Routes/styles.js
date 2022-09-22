@@ -19,10 +19,11 @@ export const styMobileView = css`
 `;
 
 export const styMobileContainer = css`
-  padding: 15px 20px 0px 25px;
+  padding: 15px 0px 0px 0px;
 `;
 export const styTitle = css`
   font-family: 'Poppins', sans-serif;
   font-weight: 600;
   font-size: 35px;
+  padding: 0 30px;
 `;
