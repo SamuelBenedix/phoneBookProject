@@ -24,13 +24,9 @@ interface ListContactProps {
 const ListContact = (props: ListContactProps) => {
   const [fav, setFav] = useState(false);
 
-  const onHandleChange = () => {
-    props.onClickFav();
-  };
-
   return (
-    <div className={styContainer} onClick={props.onClick}>
-      <div className={styContainerDetailContact}>
+    <div className={styContainer}>
+      <div className={styContainerDetailContact} onClick={props.onClick}>
         <div className={styDetailContact}>
           <div className={styName}>
             {props.data.first_name} {props.data.last_name}
@@ -42,13 +38,18 @@ const ListContact = (props: ListContactProps) => {
               .trim()}
           </div>
         </div>
-        <div className={styBtnFav} onClick={onHandleChange}>
-          {fav ? (
-            <img src={IcStar} alt="favorite" />
-          ) : (
-            <img src={IcStarOutline} alt="favorite" />
-          )}
-        </div>
+      </div>
+      <div
+        className={styBtnFav}
+        onClick={() => {
+          setFav(!fav);
+        }}
+      >
+        {fav ? (
+          <img src={IcStar} alt="favorite" />
+        ) : (
+          <img src={IcStarOutline} alt="favorite" />
+        )}
       </div>
     </div>
   );

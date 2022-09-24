@@ -2,17 +2,20 @@ import { css } from '@emotion/css';
 
 export const styContainer = css`
   width: 100%;
-  padding: 12px 0px;
   margin-bottom: 7px;
   border-bottom: 0.5px solid #808080;
   cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 `;
 
 export const styContainerDetailContact = css`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0 20px;
+  width: 100%;
+  padding: 12px 20px;
 `;
 
 export const styDetailContact = css`
@@ -20,7 +23,8 @@ export const styDetailContact = css`
 `;
 
 export const styBtnFav = css`
-  padding: 0px 10px;
+  margin-right: 30px;
+  padding: 17px;
 `;
 
 export const styName = css`

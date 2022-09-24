@@ -1,13 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
-import {
-  Button,
-  ContactForm,
-  Gap,
-  HeaderNavigation,
-  Input,
-} from '../../components';
-import { styContainer, styWrapper } from './style';
+import { Button, Gap, HeaderNavigation, Input } from '../../components';
+import { styContainer, styWrapper, styContainerPhone } from './style';
 import { useMutation } from '@apollo/client';
 import {
   ADD_PHONE_NUMBER,
@@ -106,61 +100,67 @@ const FormContact = () => {
       />
       <Gap height={40} />
       <div className={styContainer}>
-        <Input
-          label="First Name"
-          onChange={(e: any) => {
-            console.log(e.target.value);
-            setContacts({
-              ...contacts,
-              first_name: e.target.value,
-            });
-          }}
-          value={contacts.first_name}
-        />
-        <Gap height={15} />
-        <Input
-          label="Last Name"
-          onChange={(e: any) => {
-            console.log(e.target.value);
-            setContacts({
-              ...contacts,
-              last_name: e.target.value,
-            });
-          }}
-          value={contacts.last_name}
-        />
-        <div>
+        <div className={styContainerPhone}>
+          <Input
+            label="First Name"
+            onChange={(e: any) => {
+              console.log(e.target.value);
+              setContacts({
+                ...contacts,
+                first_name: e.target.value,
+              });
+            }}
+            value={contacts.first_name}
+          />
+          <Gap height={15} />
+          <Input
+            label="Last Name"
+            onChange={(e: any) => {
+              console.log(e.target.value);
+              setContacts({
+                ...contacts,
+                last_name: e.target.value,
+              });
+            }}
+            value={contacts.last_name}
+          />
           {phones.map((element: PhonesData, i: number) => {
             return (
-              <ContactForm
-                key={i}
-                index={i + 1}
-                value={element.number}
-                stateValue={phoneBefore.length}
-                onClick={() => {
-                  setPhones(
-                    phones.filter((a: PhonesData) => a.id !== element.id)
-                  );
-                }}
-                onChange={(e: any) => {
-                  const newState: any = [];
-                  phones.forEach((obj: { id: string; number: string }): any => {
-                    if (obj.id === element.id) {
-                      newState.push({ ...obj, number: e.target.value });
-                    }
-                    newState.push(obj);
-                  });
-
-                  setPhones(newState);
-                }}
-              />
+              <React.Fragment>
+                <Gap height={15} />
+                <Input
+                  label={`Phone Number ${i + 1}`}
+                  key={i}
+                  index={i + 1}
+                  value={element.number}
+                  stateValue={phoneBefore.length}
+                  isDelete
+                  onClick={() => {
+                    setPhones(
+                      phones.filter((a: PhonesData) => a.id !== element.id)
+                    );
+                  }}
+                  onChange={(e: any) => {
+                    const newState = phones.map(
+                      (obj: { id: string; number: string }): any => {
+                        if (obj.id === element.id) {
+                          return { ...obj, number: e.target.value };
+                        }
+                        return obj;
+                      }
+                    );
+                    setPhones(newState);
+                  }}
+                />
+              </React.Fragment>
             );
           })}
-          <Gap height={15} />
-          <Button isSecondary onClick={onAddField}>
-            <div>Add Phone Number</div>
-          </Button>
         </div>
+
+        <Gap height={15} />
+        <Button isSecondary onClick={onAddField}>
+          <div>Add Phone Number</div>
+        </Button>
       </div>
       <div className={styWrapper}>
         <Button isPrimary>Submit</Button>

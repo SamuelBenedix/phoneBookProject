@@ -5,7 +5,10 @@ export const styContainer = css`
   height: calc(100vh - 280px);
   overflow: scroll;
   margin-bottom: 40px;
-  padding-right: 20px;
+`;
+
+export const styContainerPhone = css`
+  padding-right: 15px;
 `;
 
 export const styWrapper = css`
