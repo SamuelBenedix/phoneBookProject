@@ -5,7 +5,7 @@ export const styContainerMobile = css``;
 export const styContainer = css`
   margin-top: 20px;
   overflow: scroll;
-  height: calc(100vh - 270px);
+  height: calc(100vh - 250px);
 `;
 
 export const styListGroup = css`
@@ -32,4 +32,14 @@ export const styTitle = css`
   font-weight: 600;
   font-size: 35px;
   padding: 0 30px;
+`;
+
+export const styWrapperBtn = css`
+  position: absolute;
+  right: 30px;
+  bottom: 10px;
+`;
+
+export const styWrapper = css`
+  position: relative;
 `;

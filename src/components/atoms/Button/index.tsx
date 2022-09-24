@@ -1,10 +1,12 @@
 import React from 'react';
+import { cx } from '@emotion/css';
 import {
   styBtnIcon,
   styBtnPrimary,
   styBtnDanger,
   styBtnSecondary,
   styBtnDelete,
+  styPrimaryColor,
 } from './style';
 
 interface ButtonProps {
@@ -16,6 +18,8 @@ interface ButtonProps {
   isPrimary?: boolean;
   isSecondary?: boolean;
   isDelete?: boolean;
+  isBig?: boolean;
+  primary?: boolean;
 }
 
 const Button = (props: ButtonProps) => {
@@ -27,6 +31,7 @@ const Button = (props: ButtonProps) => {
     isPrimary,
     isDelete,
     isSecondary,
+    primary,
   } = props;
   if (isDanger) {
     return (
@@ -79,9 +84,10 @@ const Button = (props: ButtonProps) => {
       </button>
     );
   }
+
   return (
     <button
-      className={styBtnIcon}
+      className={primary ? cx(styBtnIcon, styPrimaryColor) : styBtnIcon}
       type="button"
       disabled={isDisabled}
       onClick={onClick}

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { ListContact, SearchBar } from '../../components';
+import { Button, ListContact, SearchBar } from '../../components';
 import {
   styContainer,
   styListGroup,
@@ -7,11 +7,14 @@ import {
   styContainerSearch,
   styContactListContainer,
   styTitle,
+  styWrapperBtn,
+  styWrapper,
 } from './styles';
 
 import { useQuery } from '@apollo/client';
 import { LOAD_CONTACT_LIST } from '../../Database';
 import { useNavigate } from 'react-router-dom';
+import { ImgAddWhite } from '../../assets';
 
 const ContactList = () => {
   const [limit, setLimit] = useState(10);
@@ -21,7 +24,7 @@ const ContactList = () => {
 
   const res = useQuery(LOAD_CONTACT_LIST, {
     variables: {
-      limit: limit,
+      limit: 100,
     },
   });
 
@@ -70,6 +73,20 @@ const ContactList = () => {
               }}
             />
           ))}
+        </div>
+      </div>
+      <div className={styWrapper}>
+        <div className={styWrapperBtn}>
+          <Button
+            icon
+            isBig
+            primary
+            onClick={() => {
+              navigate('/contact/add');
+            }}
+          >
+            <img src={ImgAddWhite} alt="Icon Blue" />
+          </Button>
         </div>
       </div>
     </div>

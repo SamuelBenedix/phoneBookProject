@@ -15,6 +15,7 @@ import {
   styPhoneListContainer,
   styIcButton,
   styBtnDeleteWrapper,
+  styContainer,
 } from './styles';
 import { DELETE_CONTACT } from '../../Database';
 
@@ -26,7 +27,7 @@ const ContactDetail = () => {
   const [MyMutation] = useMutation(DELETE_CONTACT);
 
   return (
-    <div>
+    <div className={styContainer}>
       <HeaderNavigation
         onClick={() => {
           navigate('/contact/edit', { state });

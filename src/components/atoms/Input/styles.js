@@ -22,3 +22,7 @@ export const styTextInput = css`
   font-size: 15px;
   width: 100%;
 `;
+
+export const styWrapper = css`
+  display: flex;
+`;

@@ -31,12 +31,16 @@ const ListContact = (props: ListContactProps) => {
           <div className={styName}>
             {props.data.first_name} {props.data.last_name}
           </div>
-          <div className={styPhoneNumber}>
-            {props.data.phones[0].number
-              .replace(/[^0-9.+]+/, '')
-              .replace(/(.{4})/g, '$1 ')
-              .trim()}
-          </div>
+          {props.data.phones[0] ? (
+            <div className={styPhoneNumber}>
+              {props.data.phones[0].number
+                .replace(/[^0-9.+]+/, '')
+                .replace(/(.{4})/g, '$1 ')
+                .trim()}
+            </div>
+          ) : (
+            <div className={styPhoneNumber}></div>
+          )}
         </div>
       </div>
       <div

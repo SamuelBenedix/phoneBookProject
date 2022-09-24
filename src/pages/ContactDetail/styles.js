@@ -8,6 +8,10 @@ export const styTitle = css`
   margin-top: 10px;
 `;
 
+export const styContainer = css`
+  position: relative;
+`;
+
 export const styDetail = css`
   width: 100%;
   height: 40px;
@@ -22,6 +26,7 @@ export const styDetailContainer = css`
   display: flex;
   align-items: center;
   justify-content: center;
+  position: relative;
 `;
 
 export const styDetailText = css`
@@ -33,7 +38,7 @@ export const styPhoneContainer = css`
   align-items: center;
   margin-left: 30px;
   overflow: scroll;
-  height: 330px;
+  height: calc(100vh - 550px);
 `;
 
 export const styLabelDetail = css`
@@ -66,7 +71,7 @@ export const styIcButton = css`
 
 export const styBtnDeleteWrapper = css`
   width: 80%;
-
   margin-left: auto;
   margin-right: auto;
+  position: relative;
 `;

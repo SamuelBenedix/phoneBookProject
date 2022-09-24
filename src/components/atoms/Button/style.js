@@ -25,6 +25,15 @@ export const styBtnPrimary = css`
   }
 `;
 
+export const styPrimaryColor = css`
+  background-color: #1962f1;
+  width: 70px;
+  height: 70px;
+  &:hover {
+    background-color: #0334e2;
+  }
+`;
+
 export const styBtnSecondary = css`
   background-color: #fff;
   border: 1px solid #2bc313;
