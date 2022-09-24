@@ -1,16 +1,17 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { ImgArrowLeft, ImgEdit } from '../../../assets';
-import { Button } from '../../atoms';
-import { styContainer } from './style';
+import { Button, Gap } from '../../atoms';
+import { styContainer, styLabel } from './style';
 
 interface HeaderProps {
   onClick?: () => void;
   isEditBtn: boolean;
+  label?: string;
 }
 
 const HeaderNavigation = (props: HeaderProps) => {
-  const { onClick, isEditBtn } = props;
+  const { onClick, isEditBtn, label } = props;
   const navigate = useNavigate();
 
   return (
@@ -23,6 +24,8 @@ const HeaderNavigation = (props: HeaderProps) => {
       >
         <img src={ImgArrowLeft} alt="icon-back" />
       </Button>
+      {label && <div className={styLabel}>{label}</div>}
+      <Gap width={40} />
       {isEditBtn && (
         <Button onClick={onClick} icon={true}>
           <img src={ImgEdit} alt="icon-back" />

@@ -15,7 +15,7 @@ import { useNavigate } from 'react-router-dom';
 
 const ContactList = () => {
   const [limit, setLimit] = useState(10);
-  const [data, setData] = useState([]);
+  const [data, setData] = useState<any>([]);
 
   const navigate = useNavigate();
 
@@ -24,6 +24,8 @@ const ContactList = () => {
       limit: limit,
     },
   });
+
+  console.log(data);
 
   useEffect(() => {
     if (!res.loading) {
@@ -56,7 +58,7 @@ const ContactList = () => {
       <div className={styContainer}>
         <div className={styListGroup}>Favorite</div>
         <div className={styContactListContainer}>
-          {data.map((element, index) => (
+          {data.map((element: any, index: number) => (
             <ListContact
               key={index}
               data={element}

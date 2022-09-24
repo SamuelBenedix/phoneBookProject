@@ -36,7 +36,10 @@ const ListContact = (props: ListContactProps) => {
             {props.data.first_name} {props.data.last_name}
           </div>
           <div className={styPhoneNumber}>
-            {props.data.phones[0].number.replace(/[^0-9.+]+/, '')}
+            {props.data.phones[0].number
+              .replace(/[^0-9.+]+/, '')
+              .replace(/(.{4})/g, '$1 ')
+              .trim()}
           </div>
         </div>
         <div className={styBtnFav} onClick={onHandleChange}>
