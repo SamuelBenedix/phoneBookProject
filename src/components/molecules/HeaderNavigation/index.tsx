@@ -1,14 +1,9 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
+import { HeaderProps } from '../../../@types/header';
 import { ImgArrowLeft, ImgEdit } from '../../../assets';
 import { Button, Gap } from '../../atoms';
 import { styContainer, styLabel } from './style';
-
-interface HeaderProps {
-  onClick?: () => void;
-  isEditBtn: boolean;
-  label?: string;
-}
 
 const HeaderNavigation = (props: HeaderProps) => {
   const { onClick, isEditBtn, label } = props;

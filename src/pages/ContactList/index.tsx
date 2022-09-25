@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react';
-import { Button, ListContact, SearchBar } from '../../components';
+import React, { useState } from 'react';
+import { Button, ContactListComponent, SearchBar } from '../../components';
 import {
   styContainer,
   styListGroup,
@@ -11,30 +11,13 @@ import {
   styWrapper,
 } from './styles';
 
-import { useQuery } from '@apollo/client';
-import { LOAD_CONTACT_LIST } from '../../Database';
 import { useNavigate } from 'react-router-dom';
 import { ImgAddWhite } from '../../assets';
 
 const ContactList = () => {
   const [limit, setLimit] = useState(10);
-  const [data, setData] = useState<any>([]);
 
   const navigate = useNavigate();
-
-  const res = useQuery(LOAD_CONTACT_LIST, {
-    variables: {
-      limit: 100,
-    },
-  });
-
-  console.log(data);
-
-  useEffect(() => {
-    if (!res.loading) {
-      setData(res.data.contact);
-    }
-  }, [res]);
 
   return (
     <div className={styContainerMobile}>
@@ -45,7 +28,6 @@ const ContactList = () => {
           onClick={(e) => {
             e.preventDefault();
             setLimit(limit + 10);
-            res.refetch({ limit: limit });
           }}
           onChange={(e) => {
             let text = e.target.value;
@@ -57,24 +39,13 @@ const ContactList = () => {
           }}
         />
       </div>
-
       <div className={styContainer}>
         <div className={styListGroup}>Favorite</div>
         <div className={styContactListContainer}>
-          {data.map((element: any, index: number) => (
-            <ListContact
-              key={index}
-              data={element}
-              onClick={() => {
-                navigate('/contact/detail', { state: element });
-              }}
-              onClickFav={() => {
-                console.log('test');
-              }}
-            />
-          ))}
+          <ContactListComponent />
         </div>
       </div>
+
       <div className={styWrapper}>
         <div className={styWrapperBtn}>
           <Button

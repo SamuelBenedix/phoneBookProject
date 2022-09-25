@@ -1,0 +1,13 @@
+{props.data.map((element: any, index: number): any => (
+          <ListContact
+            key={index}
+            data={element}
+            onClick={() => {
+              navigate('/contact/detail', { state: element });
+            }}
+            onClickFav={() => {
+              console.log('test');
+              console.log(test[0]);
+            }}
+          />
+        ))}
