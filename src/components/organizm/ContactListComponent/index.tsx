@@ -1,29 +1,38 @@
-import React, { useContext } from 'react';
+import React, { useEffect, useState } from 'react';
 import { ListContact } from '../../molecules';
 import { useNavigate } from 'react-router-dom';
-import { ContactContextType, ContactsProps } from '../../../@types/contacts';
-import { ContactContext } from '../../../context/Contacts';
+import { styListGroup } from './styles';
+import { ContactsProps } from '../../../@types/contacts';
 
-const ContactListComponent = () => {
+const ContactListComponent = (props: {
+  data: ContactsProps[] | any;
+  isFav: boolean;
+}) => {
   const navigate = useNavigate();
-  const { data, setFav }: any = useContext(
-    ContactContext
-  ) as ContactContextType;
+
+  const [isFav, setIsFav] = useState(false);
+  useEffect(() => {
+    setIsFav(props.isFav);
+  }, [props]);
 
   return (
     <>
-      {data.map((contact: ContactsProps, index: number) => (
-        <ListContact
-          key={index}
-          data={contact}
-          onClick={() => {
-            navigate('/contact/detail', { state: contact });
-          }}
-          onClickFav={() => {
-            console.log('test');
-          }}
-        />
-      ))}
+      {props.isFav && <div className={styListGroup}>Favorite</div>}
+      {props.data.map((contact: ContactsProps, index: number) => {
+        return (
+          <React.Fragment key={index}>
+            {isFav === contact.isFav && (
+              <ListContact
+                key={index}
+                data={contact}
+                onClick={() => {
+                  navigate('/contact/detail', { state: contact });
+                }}
+              />
+            )}
+          </React.Fragment>
+        );
+      })}
     </>
   );
 };

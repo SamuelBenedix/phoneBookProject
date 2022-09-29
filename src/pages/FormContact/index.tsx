@@ -125,7 +125,7 @@ const FormContact = (props: { type: string }) => {
           />
           {phones.map((element: PhonesData, i: number) => {
             return (
-              <React.Fragment>
+              <React.Fragment key={i}>
                 <Gap height={15} />
                 <Input
                   label={`Phone Number ${i + 1}`}

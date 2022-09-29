@@ -1,5 +1,4 @@
 import React from 'react';
-
 import { styContainer, styLabel } from './styles';
 
 interface ProfilePictProps {

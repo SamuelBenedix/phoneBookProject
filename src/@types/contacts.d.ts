@@ -2,14 +2,15 @@ export interface ContactsProps {
  id?: number | string;
  first_name: string;
  last_name: string;
+ isFav?: boolean;
  phones: {
   number: string
  }[],
- fav?: boolean;
 };
 
 
 export type ContactContextType = {
  data: ContactsProps[];
- setFav: (id: number) => void;
+ localStorageData?: { id: string }
+ setFav?: (id: string) => void;
 };

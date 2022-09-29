@@ -12,6 +12,9 @@ interface props {
 
 const ContactProvider: React.FC<props> = ({ children }) => {
   const [data, setData] = useState<ContactsProps[]>([]);
+  const [localStorageData, setLocalStorageData] = useState<any>(
+    JSON.parse(localStorage.getItem('tokopediaFav')!)
+  );
 
   const res = useQuery(LOAD_CONTACT_LIST, {
     variables: {
@@ -21,17 +24,40 @@ const ContactProvider: React.FC<props> = ({ children }) => {
 
   useEffect(() => {
     if (!res.loading) {
-      setData(res.data.contact);
+      const data = res.data.contact;
+      setData([]);
+      data.forEach((element: any, id: any) => {
+        if (localStorageData !== null) {
+          const find = localStorageData.find(
+            (el: { id: string }): any => el.id === element.id
+          );
+          if (find !== undefined) {
+            setData((prev) => [...prev, { ...element, isFav: true }]);
+          } else {
+            setData((prev) => [...prev, { ...element, isFav: false }]);
+          }
+        }
+      });
     }
-  }, [res]);
+  }, [res, localStorageData]);
 
-  const setFav = (id: number) => {
-    data.filter((contact: ContactsProps) => {
-      if (contact.id === id) {
-        contact.fav = true;
-        setData([...data]);
-      }
-    });
+  const setFav = (id: string) => {
+    const found = data.find((item: any): any => item.id === id);
+    const getData: [{ id: string }] = JSON.parse(
+      localStorage.getItem('tokopediaFav')!
+    );
+    let contactFav: any = getData !== null ? getData : [];
+    if (!found?.isFav) {
+      contactFav.push({ id });
+      localStorage.setItem('tokopediaFav', JSON.stringify(contactFav));
+      setLocalStorageData(contactFav);
+      console.log('add local storage');
+    } else {
+      const filtered = getData.filter((item: any): any => item.id !== id);
+      localStorage.setItem('tokopediaFav', JSON.stringify(filtered));
+      setLocalStorageData(filtered);
+      console.log('remove local storage');
+    }
   };
 
   return (

@@ -1,11 +1,9 @@
 import { css } from '@emotion/css';
 
-export const styContainerMobile = css``;
-
 export const styContainer = css`
   margin-top: 20px;
   overflow: scroll;
-  height: calc(100vh - 250px);
+  height: calc(100vh - 180px);
 `;
 
 export const styListGroup = css`
@@ -24,7 +22,7 @@ export const styContainerSearch = css`
 
 export const styContactListContainer = css`
   padding: 0 0px;
-  display: blc;
+  display: block;
 `;
 
 export const styTitle = css`

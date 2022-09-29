@@ -5,11 +5,11 @@ import Gap from '../Gap';
 import { styContainer, styLabel, styTextInput, styWrapper } from './styles';
 
 interface InputProps {
-  onChange: (event: React.ChangeEvent) => void;
-  onClick?: (event: React.MouseEvent) => void;
   label: string;
   value?: string;
   isDelete?: boolean;
+  onChange: (event: React.ChangeEvent) => void;
+  onClick?: (event: React.MouseEvent) => void;
 }
 
 const Input = (props: InputProps) => {
