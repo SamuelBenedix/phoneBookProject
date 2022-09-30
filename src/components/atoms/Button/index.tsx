@@ -10,6 +10,7 @@ import {
   styIconBig,
 } from './style';
 import { ButtonProps } from '../../../@types/button';
+import IconOnly from './IconOnly';
 
 const Button = (props: ButtonProps) => {
   const {

@@ -8,10 +8,15 @@ import {
   ImgAddWhite,
   ImgDelete,
 } from '../../../assets';
+import { styBtnIcon, styIconBig, styPrimaryColor } from './style';
+import { cx } from '@emotion/css';
 
 interface IconProps {
-  icon: string;
-  onClick: (event: React.MouseEvent) => void;
+  icon?: string;
+  onClick?: (event: React.MouseEvent) => void;
+  type?: string;
+  isPrimary?: boolean;
+  isDisable?: boolean;
 }
 
 const IconOnly = (props: IconProps) => {
@@ -37,7 +42,16 @@ const IconOnly = (props: IconProps) => {
   };
 
   return (
-    <button type="button" onClick={props.onClick}>
+    <button
+      type="button"
+      onClick={props.onClick}
+      className={
+        props.isPrimary
+          ? cx(styBtnIcon, styPrimaryColor, styIconBig)
+          : cx(styBtnIcon)
+      }
+      disabled={props.isDisable}
+    >
       <Icon />
     </button>
   );
