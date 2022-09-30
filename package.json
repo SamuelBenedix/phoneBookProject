@@ -1,6 +1,6 @@
 {
-  "homepage": "https://samuelbenedix.github.io",
-  "name": "my-app",
+  "homepage": "https://samuelbenedix.github.io/phoneBookProject",
+  "name": "phone-book-project",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
