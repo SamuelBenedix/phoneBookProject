@@ -4,13 +4,11 @@ import Routes from './Routes';
 
 function App() {
   return (
-    <>
-      <Router basename="/phoneBookProject">
-        <ContactProvider>
-          <Routes />
-        </ContactProvider>
-      </Router>
-    </>
+    <Router basename="/phoneBookProject">
+      <ContactProvider>
+        <Routes />
+      </ContactProvider>
+    </Router>
   );
 }
 
