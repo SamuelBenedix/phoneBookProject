@@ -3,7 +3,7 @@ import { css } from '@emotion/css';
 export const styContainer = css`
   margin-top: 20px;
   overflow: scroll;
-  height: calc(100vh - 180px);
+  height: calc(100vh - 230px);
 `;
 
 export const styListGroup = css`

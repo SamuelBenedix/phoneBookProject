@@ -7,9 +7,7 @@ export const styContainer = css`
   margin-bottom: 40px;
 `;
 
-export const styContainerPhone = css`
-  padding-right: 15px;
-`;
+export const styContainerPhone = css``;
 
 export const styWrapper = css`
   display: flex;

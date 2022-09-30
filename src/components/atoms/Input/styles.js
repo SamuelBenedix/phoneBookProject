@@ -26,3 +26,7 @@ export const styTextInput = css`
 export const styWrapper = css`
   display: flex;
 `;
+
+export const styErrorText = css`
+  color: red;
+`;

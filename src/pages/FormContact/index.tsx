@@ -1,25 +1,19 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { Button, Gap, HeaderNavigation, Input } from '../../components';
 import { styContainer, styWrapper, styContainerPhone } from './style';
 import { useMutation } from '@apollo/client';
 import {
-  ADD_CONTACT,
   ADD_PHONE_NUMBER,
   EDIT_CONTACT,
   EDIT_PHONE_NUMBER,
 } from '../../Database';
+import { ContactContextType, ContactProps } from '../../@types/contacts';
+import { ContactContext } from '../../context/Contacts';
 
 interface PhonesData {
   number: string;
   id?: string;
-}
-
-interface ContactData {
-  id: string;
-  first_name: string;
-  last_name: string;
-  phones?: [];
 }
 
 const FormContact = (props: { type: string }) => {
@@ -29,12 +23,13 @@ const FormContact = (props: { type: string }) => {
   const [EditContactById] = useMutation(EDIT_CONTACT);
   const [EditPhoneNumber] = useMutation(EDIT_PHONE_NUMBER);
   const [AddNumberToContact] = useMutation(ADD_PHONE_NUMBER);
-  const [AddContactWithPhones] = useMutation(ADD_CONTACT);
 
   const [phones, setPhones] = useState<any>(
     state ? state.phones : [{ number: '' }]
   );
-  const [contacts, setContacts] = useState<ContactData>({
+  const { setNewData }: any = useContext(ContactContext) as ContactContextType;
+
+  const [contacts, setContacts] = useState<ContactProps>({
     id: state ? state.id : '',
     first_name: state ? state.first_name : '',
     last_name: state ? state.last_name : '',
@@ -45,15 +40,21 @@ const FormContact = (props: { type: string }) => {
     setPhones((prevState: any): any => [...prevState, { number: '' }]);
   };
 
-  const onHandleSubmit = (e: any) => {
+  const onHandleSubmit = async (e: any) => {
     e.preventDefault();
     if (props.type === 'edit') {
-      EditContactById({
-        variables: { id: contacts.id, _set: { ...contacts } },
-      }).then(() => {
-        phones.forEach((res: any, index: any): any => {
-          if (phoneBefore[index]) {
-            EditPhoneNumber({
+      try {
+        await EditContactById({
+          variables: { id: contacts.id, _set: { ...contacts } },
+        });
+      } catch (error) {
+        alert(error);
+      }
+
+      phones.forEach(async (res: any, index: any) => {
+        if (phoneBefore[index]) {
+          try {
+            await EditPhoneNumber({
               variables: {
                 pk_columns: {
                   number: phoneBefore[index].number,
@@ -62,31 +63,35 @@ const FormContact = (props: { type: string }) => {
                 new_phone_number: res.number,
               },
             });
-          } else {
-            AddNumberToContact({
+          } catch (error) {
+            alert(error);
+          }
+        } else {
+          try {
+            await AddNumberToContact({
               variables: {
                 contact_id: contacts.id,
                 phone_number: res.number,
               },
             });
+          } catch (error) {
+            alert(error);
           }
-        });
+        }
         navigate(`/`, { replace: true });
       });
+      console.log('edit');
     } else {
-      AddContactWithPhones({
-        variables: {
+      try {
+        await setNewData({
           first_name: contacts.first_name,
           last_name: contacts.last_name,
           phones,
-        },
-      })
-        .then(() => {
-          navigate(`/`, { replace: true });
-        })
-        .catch((er) => {
-          console.log(er);
         });
+        navigate(`/`, { replace: true });
+      } catch (error) {
+        alert(error);
+      }
     }
   };
 
@@ -104,23 +109,26 @@ const FormContact = (props: { type: string }) => {
         <div className={styContainerPhone}>
           <Input
             label="First Name"
-            onChange={(e: any) => {
+            onChange={(value: string) => {
               setContacts({
                 ...contacts,
-                first_name: e.target.value,
+                first_name: value,
               });
             }}
+            isCheck
+            unique="firstName"
             value={contacts.first_name}
           />
           <Gap height={15} />
           <Input
             label="Last Name"
-            onChange={(e: any) => {
+            onChange={(value: string) => {
               setContacts({
                 ...contacts,
-                last_name: e.target.value,
+                last_name: value,
               });
             }}
+            isCheck
             value={contacts.last_name}
           />
           {phones.map((element: PhonesData, i: number) => {
@@ -137,14 +145,11 @@ const FormContact = (props: { type: string }) => {
                       phones.filter((_: any, index: number) => index !== i)
                     );
                   }}
-                  onChange={(e: any) => {
+                  onChange={(value: string) => {
                     const newState = phones.map(
-                      (
-                        obj: { id: string; number: string },
-                        index: number
-                      ): any => {
+                      (obj: { id: string; number: string }, index: number) => {
                         if (index === i) {
-                          return { ...obj, number: e.target.value };
+                          return { ...obj, number: value };
                         }
                         return obj;
                       }
@@ -163,7 +168,9 @@ const FormContact = (props: { type: string }) => {
         </Button>
       </div>
       <div className={styWrapper}>
-        <Button isPrimary>Submit</Button>
+        <Button isPrimary type="submit">
+          Submit
+        </Button>
       </div>
     </form>
   );

@@ -2,25 +2,14 @@ import React from 'react';
 import { cx } from '@emotion/css';
 import {
   styBtnIcon,
-  styBtnPrimary,
   styBtnDanger,
-  styBtnSecondary,
   styBtnDelete,
   styPrimaryColor,
+  styButton,
+  stySecondaryColor,
+  styIconBig,
 } from './style';
-
-interface ButtonProps {
-  isDisabled?: boolean;
-  onClick?: (event: React.MouseEvent) => void;
-  children: React.ReactNode;
-  icon?: boolean;
-  isDanger?: boolean;
-  isPrimary?: boolean;
-  isSecondary?: boolean;
-  isDelete?: boolean;
-  isBig?: boolean;
-  primary?: boolean;
-}
+import { ButtonProps } from '../../../@types/button';
 
 const Button = (props: ButtonProps) => {
   const {
@@ -30,9 +19,10 @@ const Button = (props: ButtonProps) => {
     isDanger,
     isPrimary,
     isDelete,
-    isSecondary,
-    primary,
+    icon,
+    type = 'button',
   } = props;
+
   if (isDanger) {
     return (
       <button
@@ -59,24 +49,15 @@ const Button = (props: ButtonProps) => {
     );
   }
 
-  if (isSecondary) {
+  if (icon) {
     return (
       <button
-        className={styBtnSecondary}
-        type="button"
-        disabled={isDisabled}
-        onClick={onClick}
-      >
-        {children}
-      </button>
-    );
-  }
-
-  if (isPrimary) {
-    return (
-      <button
-        className={styBtnPrimary}
-        type="submit"
+        className={
+          isPrimary
+            ? cx(styBtnIcon, styPrimaryColor, styIconBig)
+            : cx(styBtnIcon)
+        }
+        type={type}
         disabled={isDisabled}
         onClick={onClick}
       >
@@ -87,8 +68,12 @@ const Button = (props: ButtonProps) => {
 
   return (
     <button
-      className={primary ? cx(styBtnIcon, styPrimaryColor) : styBtnIcon}
-      type="button"
+      className={
+        isPrimary
+          ? cx(styButton, styPrimaryColor)
+          : cx(styButton, stySecondaryColor)
+      }
+      type={type}
       disabled={isDisabled}
       onClick={onClick}
     >

@@ -12,7 +12,8 @@ const HeaderNavigation = (props: HeaderProps) => {
   return (
     <div className={styContainer}>
       <Button
-        onClick={() => {
+        onClick={(e) => {
+          e.preventDefault();
           navigate(-1);
         }}
         icon={true}

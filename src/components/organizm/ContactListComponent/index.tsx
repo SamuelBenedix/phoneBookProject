@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { ListContact } from '../../molecules';
 import { useNavigate } from 'react-router-dom';
-import { styListGroup } from './styles';
 import { ContactsProps } from '../../../@types/contacts';
 
 const ContactListComponent = (props: {
@@ -17,7 +16,6 @@ const ContactListComponent = (props: {
 
   return (
     <>
-      {props.isFav && <div className={styListGroup}>Favorite</div>}
       {props.data.map((contact: ContactsProps, index: number) => {
         return (
           <React.Fragment key={index}>

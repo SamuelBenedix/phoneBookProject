@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { ImgPhone } from '../../assets';
 import { Button, Gap, HeaderNavigation, ProfilePict } from '../../components';
@@ -18,6 +18,8 @@ import {
   styContainer,
 } from './styles';
 import { DELETE_CONTACT } from '../../Database';
+import { ContactContext } from '../../context/Contacts';
+import { ContactContextType } from '../../@types/contacts';
 
 const ContactDetail = () => {
   const location = useLocation();
@@ -25,6 +27,22 @@ const ContactDetail = () => {
   const state = location.state;
 
   const [MyMutation] = useMutation(DELETE_CONTACT);
+  const { removeData }: any = useContext(ContactContext) as ContactContextType;
+
+  const onDelete = async () => {
+    console.log(state.id);
+    try {
+      await MyMutation({
+        variables: {
+          id: state.id,
+        },
+      });
+      removeData(state.id);
+      navigate(`/`, { replace: true });
+    } catch (error) {
+      alert(error);
+    }
+  };
 
   return (
     <div className={styContainer}>
@@ -68,21 +86,7 @@ const ContactDetail = () => {
         ))}
       </div>
       <div className={styBtnDeleteWrapper}>
-        <Button
-          isDelete
-          onClick={() => {
-            console.log(state.id);
-            MyMutation({
-              variables: {
-                id: state.id,
-              },
-            })
-              .then((response) => {
-                navigate(`/`, { replace: true });
-              })
-              .catch((e) => console.log(e));
-          }}
-        >
+        <Button isDelete onClick={onDelete}>
           Delete
         </Button>
       </div>

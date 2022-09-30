@@ -7,7 +7,7 @@ import {
   styPhoneNumber,
   styContainerDetailContact,
 } from './style';
-import { IcStar, IcStarOutline } from '../../../assets';
+import { IcStar, IcStartOutline } from '../../../assets';
 import { ContactContextType, ContactsProps } from '../../../@types/contacts';
 import { ContactContext } from '../../../context/Contacts';
 
@@ -21,7 +21,7 @@ const ListContact = (props: ListContactProps) => {
   const { setFav }: any = useContext(ContactContext) as ContactContextType;
 
   const onClick = () => {
-    setFav(props.data.id);
+    setFav(props.data);
   };
 
   return (
@@ -48,7 +48,7 @@ const ListContact = (props: ListContactProps) => {
           {props.data.isFav ? (
             <img src={IcStar} alt="favorite" />
           ) : (
-            <img src={IcStarOutline} alt="favorite" />
+            <img src={IcStartOutline} alt="favorite" />
           )}
         </div>
       </div>

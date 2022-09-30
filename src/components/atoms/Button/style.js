@@ -1,17 +1,13 @@
 import { css } from '@emotion/css';
 
-export const styBtnPrimary = css`
-  background-color: #1962f1;
-  border: 1px solid rgb(209, 213, 219);
+export const styButton = css`
   box-sizing: border-box;
   padding: 10px;
   text-align: center;
   text-decoration: none #d1d5db solid;
   text-decoration-thickness: auto;
-  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
   cursor: pointer;
   user-select: none;
-  -webkit-user-select: none;
   touch-action: manipulation;
   width: 100%;
   border-radius: 5px;
@@ -19,43 +15,29 @@ export const styBtnPrimary = css`
   font-weight: 600;
   color: #fff;
   height: 46px;
-
-  &:hover {
-    background-color: #0334e2;
-  }
+  display: block;
+  border: none;
 `;
 
 export const styPrimaryColor = css`
   background-color: #1962f1;
-  width: 70px;
-  height: 70px;
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
   &:hover {
     background-color: #0334e2;
   }
 `;
 
-export const styBtnSecondary = css`
+export const styIconBig = css`
+  height: 60px;
+  width: 60px;
+`;
+
+export const stySecondaryColor = css`
   background-color: #fff;
+  color: #2bc313;
   border: 1px solid #2bc313;
-  box-sizing: border-box;
-  padding: 10px;
-  text-align: center;
-  text-decoration: none #d1d5db solid;
-  text-decoration-thickness: auto;
-  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
-  cursor: pointer;
-  user-select: none;
-  -webkit-user-select: none;
-  touch-action: manipulation;
-  width: 100%;
-  border-radius: 5px;
-  color: #50d63a;
-
-  font-size: 15px;
-  font-weight: 600;
-
   &:hover {
-    background-color: #50d63a;
+    background-color: #2bc313;
     color: #fff;
   }
 `;

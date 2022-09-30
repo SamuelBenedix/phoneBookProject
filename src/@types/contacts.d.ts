@@ -1,3 +1,11 @@
+
+export interface ContactProps {
+ id?: number | string;
+ first_name: string;
+ last_name: string;
+ isFav?: boolean;
+}
+
 export interface ContactsProps {
  id?: number | string;
  first_name: string;
@@ -12,5 +20,9 @@ export interface ContactsProps {
 export type ContactContextType = {
  data: ContactsProps[];
  localStorageData?: { id: string }
- setFav?: (id: string) => void;
+ setFav?: (ContactsProps) => void;
+ setData?: (props: any) => void;
+ localData?: any;
+ setNewData: (ContactProps) => void;
+ removeData: (id: number) => void
 };
