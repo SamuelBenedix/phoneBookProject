@@ -1,9 +1,7 @@
 /* eslint-disable no-useless-escape */
-import React, { useContext, useState } from 'react';
-import { ContactContextType } from '../../../@types/contacts';
+import React, { useState } from 'react';
 import { InputProps } from '../../../@types/input';
 import { ImgDelete } from '../../../assets';
-import { ContactContext } from '../../../context/Contacts';
 import Button from '../Button';
 import Gap from '../Gap';
 import {
