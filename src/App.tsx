@@ -5,7 +5,7 @@ import Routes from './Routes';
 function App() {
   return (
     <>
-      <Router>
+      <Router basename="/phoneBookProject">
         <ContactProvider>
           <Routes />
         </ContactProvider>
