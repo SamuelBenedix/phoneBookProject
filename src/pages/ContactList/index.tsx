@@ -26,7 +26,22 @@ const ContactList = () => {
 
   return (
     <div>
-      <h1 className={styTitle}>Phone Book</h1>
+      <h1 className={styTitle}>
+        Phone Book
+        <div className={styWrapper}>
+          <div className={styWrapperBtn}>
+            <Button
+              icon
+              isPrimary
+              onClick={() => {
+                navigate('/contact/add');
+              }}
+            >
+              <img src={ImgAddWhite} alt="Icon Blue" />
+            </Button>
+          </div>
+        </div>
+      </h1>
       <div className={styContainer}>
         <div className={styContactListContainer}>
           {page === 1 && <ContactListComponent data={data} isFav={true} />}
@@ -34,19 +49,6 @@ const ContactList = () => {
         </div>
       </div>
 
-      <div className={styWrapper}>
-        <div className={styWrapperBtn}>
-          <Button
-            icon
-            isPrimary
-            onClick={() => {
-              navigate('/contact/add');
-            }}
-          >
-            <img src={ImgAddWhite} alt="Icon Blue" />
-          </Button>
-        </div>
-      </div>
       <Pagination
         page={page}
         length={data.length}

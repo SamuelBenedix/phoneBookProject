@@ -30,14 +30,11 @@ export const styTitle = css`
   font-weight: 600;
   font-size: 35px;
   padding: 0 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 `;
 
-export const styWrapperBtn = css`
-  position: absolute;
-  right: 30px;
-  bottom: 10px;
-`;
+export const styWrapperBtn = css``;
 
-export const styWrapper = css`
-  position: relative;
-`;
+export const styWrapper = css``;

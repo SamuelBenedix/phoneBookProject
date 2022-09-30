@@ -12,7 +12,6 @@ interface PaginationProps {
 
 const Pagination = (props: PaginationProps) => {
   const numberOfPages = Math.ceil(props.length / 10);
-  console.log(numberOfPages);
   return (
     <div className={styContainer}>
       {props.page > 1 ? (

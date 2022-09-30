@@ -32,13 +32,16 @@ const Input = (props: InputProps) => {
 
   return (
     <div className={styContainer}>
-      <div className={styLabel}>{props.label}</div>
-      <div className={styWrapper}>
+      <label htmlFor={styLabel} className={styLabel}>
+        {props.label}
+      </label>
+      <div id={styLabel} className={styWrapper}>
         <input
           className={styTextInput}
           type="text"
           onChange={onChange}
           value={props.value}
+          placeholder={`Silahkan masukkan ${props.label.toLowerCase()}`}
         />
 
         {props.isDelete && (
@@ -50,7 +53,11 @@ const Input = (props: InputProps) => {
           </React.Fragment>
         )}
       </div>
-      {isError && <div className={styErrorText}>{errorMessage}</div>}
+      {isError && (
+        <span data-testid="error" className={styErrorText}>
+          {errorMessage}
+        </span>
+      )}
     </div>
   );
 };
