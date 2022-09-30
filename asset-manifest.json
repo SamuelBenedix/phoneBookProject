@@ -1,12 +1,12 @@
 {
   "files": {
-    "main.js": "/phoneBookProject/static/js/main.053e49e2.js",
-    "static/js/787.2b681bba.chunk.js": "/phoneBookProject/static/js/787.2b681bba.chunk.js",
+    "main.js": "/phoneBookProject/static/js/main.ad4f9e60.js",
+    "static/js/787.c5b27911.chunk.js": "/phoneBookProject/static/js/787.c5b27911.chunk.js",
     "index.html": "/phoneBookProject/index.html",
-    "main.053e49e2.js.map": "/phoneBookProject/static/js/main.053e49e2.js.map",
-    "787.2b681bba.chunk.js.map": "/phoneBookProject/static/js/787.2b681bba.chunk.js.map"
+    "main.ad4f9e60.js.map": "/phoneBookProject/static/js/main.ad4f9e60.js.map",
+    "787.c5b27911.chunk.js.map": "/phoneBookProject/static/js/787.c5b27911.chunk.js.map"
   },
   "entrypoints": [
-    "static/js/main.053e49e2.js"
+    "static/js/main.ad4f9e60.js"
   ]
 }
